@@ -5,9 +5,6 @@ PORT = 8008
 
 
 class echoHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.write_response(b'')
-
     def do_POST(self):
         content_length = int(self.headers.get('content-length', 0))
         body = self.rfile.read(content_length)
