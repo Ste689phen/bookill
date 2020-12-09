@@ -26,3 +26,6 @@ def main():
     server = HTTPServer((BIND_HOST, PORT), echoHandler)
     print('Echo server now running on ')
     server.serve_forever()
+
+if __name__ == '__main__':
+    main()
