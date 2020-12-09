@@ -23,11 +23,6 @@ class echoHTTPRequestHandler(BaseHTTPRequestHandler):
         print(content.decode('utf-8'))
 
 
-if len(argv) > 1:
-    arg = argv[1].split(':')
-    BIND_HOST = arg[0]
-    PORT = int(arg[1])
-
 def main():
     server = HTTPServer(('', PORT), echoHTTPRequestHandler)
     print('Echo server now running...')
