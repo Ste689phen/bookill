@@ -1,14 +1,15 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from sys import argv
 
-HOST = 'localhost'
-PORT = 8000
+PORT = 8008
 
 
+class echoHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.write_response(b'')
 
-class EchoHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
-        content_length = init(self.headers.get('content-length', 0))
+        content_length = int(self.headers.get('content-length', 0))
         body = self.rfile.read(content_length)
 
         self.write_response(body)
@@ -22,10 +23,16 @@ class EchoHTTPRequestHandler(BaseHTTPRequestHandler):
         print(content.decode('utf-8'))
 
 
+if len(argv) > 1:
+    arg = argv[1].split(':')
+    BIND_HOST = arg[0]
+    PORT = int(arg[1])
+
 def main():
-    server = HTTPServer((BIND_HOST, PORT), echoHandler)
-    print('Echo server now running on ')
+    server = HTTPServer(('', PORT), echoHTTPRequestHandler)
+    print('Echo server now running...')
     server.serve_forever()
+
 
 if __name__ == '__main__':
     main()
