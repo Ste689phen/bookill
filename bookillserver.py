@@ -1,5 +1,8 @@
 from http.server import HTTPServer, BaseHTTPRequetHandler
 
+BIND_HOST = 'localhost'
+PORT = 8080
+
 class echoHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         self.send_response(200)
@@ -11,11 +14,10 @@ class echoHandler(BaseHTTPRequestHandler):
 
 
 def main():
-    PORT = 8080
-    server = HTTPServer(('ip-172-31-25-240', PORT) echoHandler)
+    server = HTTPServer((BINDHOST, PORT) echoHandler)
     print('Echo server now running')
     server.serve_forever()
 
 
 if __name__ = '__main__':
-    main()    
+    main()
